@@ -8,15 +8,12 @@ const Header: React.FC = () => {
   const [inputValue, setInputValue] = useState<string>("");
   const goToSearch = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    
-    router.push({pathname: "/search", query:{ search: inputValue } });
+
+    router.push({ pathname: "/search", query: { search: inputValue } });
     setIsSearchbarShown(!isSearchbarShown);
-    setInputValue("")
+    setInputValue("");
   };
 
-
-
-  
   return (
     <>
       <header className="header-v4">
@@ -71,9 +68,11 @@ const Header: React.FC = () => {
                   </li>
 
                   <li
-                    className={router.pathname === "/blog" ? "active-menu" : ""}
+                    className={
+                      router.pathname === "/blogs" ? "active-menu" : ""
+                    }
                   >
-                    <Link href="/blog">
+                    <Link href="/blogs">
                       <a>Blog</a>
                     </Link>
                   </li>
@@ -133,7 +132,7 @@ const Header: React.FC = () => {
                 name="search"
                 placeholder="Search..."
                 onChange={(e) => setInputValue(e.target.value)}
-                value = {inputValue}
+                value={inputValue}
               />
             </form>
           </div>
