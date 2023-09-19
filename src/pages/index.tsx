@@ -32,15 +32,15 @@ const Home: NextPage<Props> = ({ bannerData, featuredProducts, blogs,  }) => {
 };
 
 export const getStaticProps: GetStaticProps = async () => {
-  const resBannerContent = await fetch("http://localhost:5001/banner_content");
+  const resBannerContent = await fetch("http://data-api-jet.vercel.app/banner_content");
   const bannerData: BannerType = await resBannerContent.json();
 
   const resFeaturedProducts = await fetch(
-    "http://localhost:5001/products/?_limit=4"
+    "http://data-api-jet.vercel.app/products/?_limit=4"
   );
   const featuredProducts: ProductType[] = await resFeaturedProducts.json();
 
-  const resBlogs = await fetch("http://localhost:5001/blogs/?_limit=3");
+  const resBlogs = await fetch("http://data-api-jet.vercel.app/blogs/?_limit=3");
   const blogs: ProductType[] = await resBlogs.json();
 
   return {
