@@ -4,12 +4,11 @@ import PageTitle from "../../components/PageTitle";
 import RelatedBlogs from "../../components/RelatedBlogs";
 import { BlogsType, ProductType } from "../../components/types";
 
-
 interface Props {
-  blog: BlogsType,
-  relatedBlogs: BlogsType[]
+  blog: BlogsType;
+  relatedBlogs: BlogsType[];
 }
-const BlogDetail: NextPage<Props> = ({blog,  relatedBlogs}) => {
+const BlogDetail: NextPage<Props> = ({ blog, relatedBlogs }) => {
   return (
     <>
       <Head>
@@ -18,7 +17,7 @@ const BlogDetail: NextPage<Props> = ({blog,  relatedBlogs}) => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <PageTitle title={blog.title}/>
+      <PageTitle title={blog.title} />
 
       <section className="bg0 p-t-52 p-b-20">
         <div className="container">
@@ -31,7 +30,9 @@ const BlogDetail: NextPage<Props> = ({blog,  relatedBlogs}) => {
 
                 <div className="p-t-32">
                   <span className="flex-w align-items-center flex-m stext-111 cl2 p-b-19">
-                    <span className="flex-c-m mr-3 bor7 p-lr-15 trans-04">{blog.category}</span>
+                    <span className="flex-c-m mr-3 bor7 p-lr-15 trans-04">
+                      {blog.category}
+                    </span>
 
                     <span>
                       <span className="cl4">By</span> {blog.author}
@@ -72,22 +73,23 @@ export const getStaticPaths: GetStaticPaths = async () => {
 
   return {
     paths: paths,
-    fallback: true,
+    fallback: false,
   };
 };
 
 export const getStaticProps: GetStaticProps = async ({ params }) => {
   const id = params?.id;
 
-     const resRelated = await fetch("https://data-api-jet.vercel.app/blogs?_start=$%7BrandomNo%7D&_limit=3");
-    const relatedBlogs: BlogsType[] = await resRelated.json();
-  
-  
+  const resRelated = await fetch(
+    "https://data-api-jet.vercel.app/blogs?_start=$%7BrandomNo%7D&_limit=3"
+  );
+  const relatedBlogs: BlogsType[] = await resRelated.json();
+
   if (id) {
     const resBlog = await fetch(`https://data-api-jet.vercel.app/blogs/${id}`);
     const blog: BlogsType = await resBlog.json();
     return {
-      props: { blog,  relatedBlogs },
+      props: { blog, relatedBlogs },
     };
   }
 
@@ -95,7 +97,5 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
     notFound: true,
   };
 };
-
-
 
 export default BlogDetail;
