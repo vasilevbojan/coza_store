@@ -214,13 +214,13 @@ export const getServerSideProps: GetServerSideProps = async ({ query }) => {
 
   let link;
   if (category && search) {
-    link = `http://localhost:5001/blogs?category_like=${category}&q=${search}`;
+    link = `https://data-api-jet.vercel.app/blogs?category_like=${category}&q=${search}`;
   } else if (category) {
-    link = `http://localhost:5001/blogs?category_like=${category}`;
+    link = `https://data-api-jet.vercel.app/blogs?category_like=${category}`;
   } else if (search) {
-    link = `http://localhost:5001/blogs?q=${search}`;
+    link = `https://data-api-jet.vercel.app/blogs?q=${search}`;
   } else {
-    link = "http://localhost:5001/blogs";
+    link = "https://data-api-jet.vercel.app/blogs";
   }
   const resBlogs = await fetch(link);
   const blogs: BlogsType[] = await resBlogs.json();

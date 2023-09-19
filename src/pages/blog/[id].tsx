@@ -63,7 +63,7 @@ const BlogDetail: NextPage<Props> = ({blog,  relatedBlogs}) => {
 };
 
 export const getStaticPaths: GetStaticPaths = async () => {
-  const resBlogs = await fetch("http://localhost:5001/blogs");
+  const resBlogs = await fetch("https://data-api-jet.vercel.app/blogs");
   const blogs: BlogsType[] = await resBlogs.json();
 
   const paths = blogs.map((blog) => {
@@ -79,12 +79,12 @@ export const getStaticPaths: GetStaticPaths = async () => {
 export const getStaticProps: GetStaticProps = async ({ params }) => {
   const id = params?.id;
 
-     const resRelated = await fetch("http://localhost:5001/blogs?_start=$%7BrandomNo%7D&_limit=3");
+     const resRelated = await fetch("https://data-api-jet.vercel.app/blogs?_start=$%7BrandomNo%7D&_limit=3");
     const relatedBlogs: BlogsType[] = await resRelated.json();
   
   
   if (id) {
-    const resBlog = await fetch(`http://localhost:5001/blogs/${id}`);
+    const resBlog = await fetch(`https://data-api-jet.vercel.app/blogs/${id}`);
     const blog: BlogsType = await resBlog.json();
     return {
       props: { blog,  relatedBlogs },

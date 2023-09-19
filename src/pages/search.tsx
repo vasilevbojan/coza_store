@@ -66,10 +66,10 @@ export default Search;
 export const getServerSideProps: GetServerSideProps = async ({ query }) => {
   const search = query.search;
 
-  const resProducts = await fetch(`http://data-api-jet.vercel.app/products?q=${search}`);
+  const resProducts = await fetch(`https://data-api-jet.vercel.app/products?q=${search}`);
   const products: ProductType[] = await resProducts.json();
 
-  const resBlogs = await fetch(`http://data-api-jet.vercel.app/blogs?q=${search}`);
+  const resBlogs = await fetch(`https://data-api-jet.vercel.app/blogs?q=${search}`);
   const blogs: BlogsType[] = await resBlogs.json();
   return {
     props: {

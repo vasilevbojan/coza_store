@@ -230,13 +230,13 @@ export const getServerSideProps: GetServerSideProps = async ({ query }) => {
 
   let link;
   if (gender && typeProd) {
-    link =`http://data-api-jet.vercel.app/products?gender_like=${gender}&q=${typeProd}`;
+    link =`https://data-api-jet.vercel.app/products?gender_like=${gender}&q=${typeProd}`;
   } else if (gender) {
-    link =`http://data-api-jet.vercel.app/products?gender_like=${gender}`;
+    link =`https://data-api-jet.vercel.app/products?gender_like=${gender}`;
   } else if (typeProd) {
-    link =`http://data-api-jet.vercel.app/products?q=${typeProd}`;
+    link =`https://data-api-jet.vercel.app/products?q=${typeProd}`;
   } else {
-    link ="http://data-api-jet.vercel.app/products";
+    link ="https://data-api-jet.vercel.app/products";
   }
   console.log(link);
   const resProducts = await fetch(link);
