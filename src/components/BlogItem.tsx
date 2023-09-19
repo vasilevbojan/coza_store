@@ -12,7 +12,7 @@ const BlogItem: React.FC<BlogsType> = ({
   first_content,
 }) => {
   return (
-    <a className="p-b-63 d-block" href={`/blog/${id}`}>
+    <a className="p-b-63 d-block" href={`/blogs/${id}`}>
       <span className="hov-img0 how-pos5-parent">
         <img src={img} alt="IMG-BLOG" />
       </span>
