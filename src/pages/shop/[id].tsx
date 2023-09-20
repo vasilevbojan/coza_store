@@ -1,4 +1,9 @@
-import type { GetStaticPaths, GetStaticProps, NextPage } from "next";
+import type {
+  GetServerSideProps,
+  GetStaticPaths,
+  GetStaticProps,
+  NextPage,
+} from "next";
 import Head from "next/head";
 import PageTitle from "../../components/PageTitle";
 import RelatedProducts from "../../components/RelatedProducts";
@@ -116,39 +121,22 @@ const ShopDetail: NextPage<Props> = ({ product, relatedProd }) => {
 
 export default ShopDetail;
 
-export const getStaticPaths: GetStaticPaths = async () => {
-  const resProducts = await fetch("https://data-api-jet.vercel.app/products");
+export const getServerSideProps: GetServerSideProps = async ({ query }) => {
+  const id = query.id;
+
+  const resProducts = await fetch(
+    `https://data-api-jet.vercel.app/products/${id}`
+  );
   const product: ProductType[] = await resProducts.json();
-
-  const paths = product.map((prod) => {
-    return { params: { id: prod.id } };
-  });
-
-  return {
-    paths: paths,
-    fallback: false,
-  };
-};
-
-export const getStaticProps: GetStaticProps = async ({ params }) => {
-  const id = params?.id;
 
   const resRelated = await fetch(
     "https://data-api-jet.vercel.app/products?_start=$%7BrandomNo%7D&_limit=4"
   );
   const relatedProd: ProductType[] = await resRelated.json();
-
-  if (id) {
-    const resProducts = await fetch(
-      `https://data-api-jet.vercel.app/products/${id}`
-    );
-    const product: ProductType = await resProducts.json();
-    return {
-      props: { product, relatedProd },
-    };
-  }
-
   return {
-    notFound: true,
+    props: {
+      product,
+      relatedProd,
+    },
   };
 };
