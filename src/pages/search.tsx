@@ -5,15 +5,13 @@ import PageTitle from "../components/PageTitle";
 import ProductItem from "../components/ProductItem";
 import { BlogsType, ProductType } from "../components/types";
 
-
 interface Props {
   blogs: BlogsType[];
-  products: ProductType[]
+  products: ProductType[];
 }
 
-
 const Search: NextPage<Props> = ({ blogs, products }) => {
-  console.log(blogs, products)
+  console.log(blogs, products);
   return (
     <>
       <Head>
@@ -66,15 +64,19 @@ export default Search;
 export const getServerSideProps: GetServerSideProps = async ({ query }) => {
   const search = query.search;
 
-  const resProducts = await fetch(`https://data-api-jet.vercel.app/products?q=${search}`);
+  const resProducts = await fetch(
+    `https://data-api-coza-store.vercel.app/products?q=${search}`
+  );
   const products: ProductType[] = await resProducts.json();
 
-  const resBlogs = await fetch(`https://data-api-jet.vercel.app/blogs?q=${search}`);
+  const resBlogs = await fetch(
+    `https://data-api-coza-store.vercel.app/blogs?q=${search}`
+  );
   const blogs: BlogsType[] = await resBlogs.json();
   return {
     props: {
       products,
-      blogs
+      blogs,
     },
   };
 };

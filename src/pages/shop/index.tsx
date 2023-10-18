@@ -157,10 +157,7 @@ const Shop: NextPage<Props> = ({ productsData }) => {
             </div>
 
             <div className="flex-w flex-c-m m-tb-10">
-              <div
-                className="flex-c-m stext-106 cl6 size-105 bor4 pointer hov-btn3 trans-04 m-tb-4 js-show-search show-search"
-                
-              >
+              <div className="flex-c-m stext-106 cl6 size-105 bor4 pointer hov-btn3 trans-04 m-tb-4 js-show-search show-search">
                 <i className="icon-search cl2 m-r-6 fs-15 trans-04 zmdi zmdi-search"></i>
                 Search
               </div>
@@ -168,14 +165,16 @@ const Shop: NextPage<Props> = ({ productsData }) => {
 
             {/* search */}
             <div className="panel-search w-full p-t-10 p-b-15">
-              <form className="bor8 dis-flex p-l-15" onSubmit={(e) => {
-                e.preventDefault()
+              <form
+                className="bor8 dis-flex p-l-15"
+                onSubmit={(e) => {
+                  e.preventDefault();
                   router.push({
                     query: { ...router.query, search: searchInput },
                   });
-                  setSearchInput("")
-                }}>
-                
+                  setSearchInput("");
+                }}
+              >
                 <button className="size-113 flex-c-m fs-16 cl2 hov-cl1 trans-04">
                   <i className="zmdi zmdi-search"></i>
                 </button>
@@ -230,13 +229,13 @@ export const getServerSideProps: GetServerSideProps = async ({ query }) => {
 
   let link;
   if (gender && typeProd) {
-    link =`https://data-api-jet.vercel.app/products?gender_like=${gender}&q=${typeProd}`;
+    link = `https://data-api-coza-store.vercel.app/products?gender_like=${gender}&q=${typeProd}`;
   } else if (gender) {
-    link =`https://data-api-jet.vercel.app/products?gender_like=${gender}`;
+    link = `https://data-api-coza-store.vercel.app/products?gender_like=${gender}`;
   } else if (typeProd) {
-    link =`https://data-api-jet.vercel.app/products?q=${typeProd}`;
+    link = `https://data-api-coza-store.vercel.app/products?q=${typeProd}`;
   } else {
-    link ="https://data-api-jet.vercel.app/products";
+    link = "https://data-api-coza-store.vercel.app/products";
   }
   console.log(link);
   const resProducts = await fetch(link);

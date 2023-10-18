@@ -125,12 +125,12 @@ export const getServerSideProps: GetServerSideProps = async ({ query }) => {
   const id = query.id;
 
   const resProducts = await fetch(
-    `https://data-api-jet.vercel.app/products/${id}`
+    `https://data-api-coza-store.vercel.app/products/${id}`
   );
   const product: ProductType[] = await resProducts.json();
 
   const resRelated = await fetch(
-    "https://data-api-jet.vercel.app/products?_start=$%7BrandomNo%7D&_limit=4"
+    "https://data-api-coza-store.vercel.app/products?_start=$%7BrandomNo%7D&_limit=4"
   );
   const relatedProd: ProductType[] = await resRelated.json();
   return {

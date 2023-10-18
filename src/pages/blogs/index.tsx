@@ -42,11 +42,11 @@ const Blog: NextPage<Props> = ({ blogs }) => {
                 <form
                   className="bor17 of-hidden pos-relative"
                   onSubmit={(e) => {
-                    e.preventDefault()
+                    e.preventDefault();
                     router.push({
                       query: { ...router.query, search: searchInput },
                     });
-                   setSearchInput("")
+                    setSearchInput("");
                   }}
                 >
                   <input
@@ -56,7 +56,6 @@ const Blog: NextPage<Props> = ({ blogs }) => {
                     placeholder="Search"
                     onChange={(e) => setSearchInput(e.target.value)}
                     value={searchInput}
-
                   />
 
                   <button className="flex-c-m size-122 ab-t-r fs-18 cl4 hov-cl1 trans-04">
@@ -214,13 +213,13 @@ export const getServerSideProps: GetServerSideProps = async ({ query }) => {
 
   let link;
   if (category && search) {
-    link = `https://data-api-jet.vercel.app/blogs?category_like=${category}&q=${search}`;
+    link = `https://data-api-coza-store.vercel.app/blogs?category_like=${category}&q=${search}`;
   } else if (category) {
-    link = `https://data-api-jet.vercel.app/blogs?category_like=${category}`;
+    link = `https://data-api-coza-store.vercel.app/blogs?category_like=${category}`;
   } else if (search) {
-    link = `https://data-api-jet.vercel.app/blogs?q=${search}`;
+    link = `https://data-api-coza-store.vercel.app/blogs?q=${search}`;
   } else {
-    link = "https://data-api-jet.vercel.app/blogs";
+    link = "https://data-api-coza-store.vercel.app/blogs";
   }
   const resBlogs = await fetch(link);
   const blogs: BlogsType[] = await resBlogs.json();

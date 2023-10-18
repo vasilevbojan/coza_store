@@ -72,7 +72,7 @@ const About: NextPage<Props> = ({aboutData}) => {
 };
 
 export const getStaticProps: GetStaticProps = async () => {
-  const resAbout = await fetch("https://data-api-jet.cercel.app/about_page");
+  const resAbout = await fetch("https://data-api-coza-store.vercel.app/about_page");
   const aboutData: ProductType[] = await resAbout.json();
   return {
     props: {
